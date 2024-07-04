@@ -1,7 +1,6 @@
-/* styles/navbar.css */
 .navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: center; /* Center the navbar contents */
   align-items: center;
   background-color: #333;
   padding: 1rem;
@@ -12,7 +11,7 @@
 .navbar-links {
   display: flex;
   gap: 1rem;
-  flex-wrap: wrap; /* Ensure buttons wrap if they overflow */
+  justify-content: center; /* Center the buttons */
 }
 
 .navbar-links button {
@@ -23,13 +22,10 @@
   cursor: pointer;
   border-radius: 4px;
   transition: background-color 0.3s ease;
-  flex: 1; /* Allow buttons to expand to fill space */
-  max-width: 100%;
-  box-sizing: border-box;
 }
 
 .navbar-links button:hover {
   background-color: #777;
 }
-  
+
   
