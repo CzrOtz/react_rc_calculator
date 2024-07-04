@@ -1,34 +1,35 @@
 /* styles/navbar.css */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #333;
-    padding: 1rem;
-  }
-  
-  .navbar h1 {
-    color: #fff;
-    margin: 0;
-  }
-  
-  .navbar-links {
-    display: flex;
-    gap: 1rem;
-  }
-  
-  .navbar-links button {
-    background-color: #555;
-    color: #fff;
-    border: none;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .navbar-links button:hover {
-    background-color: #777;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap; /* Ensure buttons wrap if they overflow */
+}
+
+.navbar-links button {
+  background-color: #555;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  flex: 1; /* Allow buttons to expand to fill space */
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.navbar-links button:hover {
+  background-color: #777;
+}
   
   
