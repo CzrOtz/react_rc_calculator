@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Welcome from './components/Welcome';
 import Info from './components/Info';
 import Interface from './components/Interface';
+import Theory from './components/Theory';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('Welcome');
@@ -16,6 +17,8 @@ function App() {
         return <Info />;
       case 'Interface':
         return <Interface />;
+      case 'Theory':
+        return <Theory />;
       default:
         return <Welcome />;
     }

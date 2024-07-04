@@ -5,7 +5,7 @@ function Interface() {
   const [pteeth, setPteeth] = useState('');
   const [steeth, setSteeth] = useState('');
   const [tgr, setTgr] = useState('');
-  const [batv, setBatv] = useState('');
+  const [cellCount, setCellCount] = useState('');
   const [kv, setKv] = useState('');
   const [wd, setWd] = useState('');
   const [showResults, setShowResults] = useState(false);
@@ -13,6 +13,16 @@ function Interface() {
   const handleInputChange = (setter) => (event) => {
     setter(event.target.value);
     setShowResults(false);
+  };
+
+  const getVoltageRangeFromCellCount = (cellCount) => {
+    const nominalVoltagePerCell = 3.7;
+    const maxVoltagePerCell = 4.2;
+    const minVoltagePerCell = 3.5;
+    return {
+      min: cellCount * minVoltagePerCell,
+      max: cellCount * maxVoltagePerCell
+    };
   };
 
   const calculatePinionToSpurGearRatio = () => {
@@ -23,18 +33,18 @@ function Interface() {
     return calculatePinionToSpurGearRatio() * tgr;
   };
 
-  const calculateMotorRpm = () => {
-    return batv * kv;
+  const calculateMotorRpm = (voltage) => {
+    return voltage * kv;
   };
 
-  const calculateWheelRpm = () => {
-    return calculateMotorRpm() / calculateTotalGearRatio();
+  const calculateWheelRpm = (voltage) => {
+    return calculateMotorRpm(voltage) / calculateTotalGearRatio();
   };
 
-  const calculateWheelSpeed = () => {
+  const calculateWheelSpeed = (voltage) => {
     const wheelDiameterInFeet = wd / 12;
     const wheelCircumferenceInFeet = Math.PI * wheelDiameterInFeet;
-    const distancePerMinuteInFeet = calculateWheelRpm() * wheelCircumferenceInFeet;
+    const distancePerMinuteInFeet = calculateWheelRpm(voltage) * wheelCircumferenceInFeet;
     const distancePerHourInFeet = distancePerMinuteInFeet * 60;
     const distancePerHourInMiles = distancePerHourInFeet / 5280;
 
@@ -43,13 +53,21 @@ function Interface() {
 
   const showCalculations = () => {
     if (showResults) {
+      const { min, max } = getVoltageRangeFromCellCount(cellCount);
+      const minSpeed = calculateWheelSpeed(min).toFixed(2);
+      const maxSpeed = calculateWheelSpeed(max).toFixed(2);
+      
       return (
         <div className="results">
-          <div>Wheel Speed: {calculateWheelSpeed().toFixed(2)} MPH</div>
-          <div>Pinion to Spur Gear Ratio: {calculatePinionToSpurGearRatio().toFixed(2)}</div>
-          <div>Total Gear Ratio: {calculateTotalGearRatio().toFixed(2)}</div>
-          <div>Motor RPM: {calculateMotorRpm().toFixed(2)}</div>
-          <div>Wheel RPM: {calculateWheelRpm().toFixed(2)}</div>
+          <div>Wheel Speed Range: <strong>{minSpeed}</strong> - <strong>{maxSpeed}</strong> MPH</div>
+          <br />
+          <div>Pinion to Spur Gear Ratio: <strong>{calculatePinionToSpurGearRatio().toFixed(2)}</strong></div>
+          <br />
+          <div>Total Gear Ratio: <strong>{calculateTotalGearRatio().toFixed(2)}</strong></div>
+          <br />
+          <div>Motor RPM Range: <strong>{(calculateMotorRpm(min)).toFixed(2)}</strong> - <strong>{(calculateMotorRpm(max)).toFixed(2)}</strong></div>
+          <br />
+          <div>Wheel RPM Range: <strong>{(calculateWheelRpm(min)).toFixed(2)}</strong> - <strong>{(calculateWheelRpm(max)).toFixed(2)}</strong></div>
         </div>
       );
     }
@@ -58,6 +76,8 @@ function Interface() {
 
   return (
     <div className="interface-container">
+      <div><strong>Interface</strong></div>
+      <br />
       <form className="interface-form">
         <div className="form-group">
           <label>Pinion Teeth Count</label>
@@ -90,12 +110,12 @@ function Interface() {
         </div>
 
         <div className="form-group">
-          <label>Enter Battery Voltage</label>
+          <label>Enter LiPo Battery Cell Count</label>
           <input
             type="text"
-            value={batv}
-            placeholder="Enter a voltage, 7.4, 11.1"
-            onChange={handleInputChange(setBatv)}
+            value={cellCount}
+            placeholder="Enter cell count (e.g., 2, 3, 4)"
+            onChange={handleInputChange(setCellCount)}
           />
         </div>
 
@@ -130,5 +150,6 @@ function Interface() {
 }
 
 export default Interface;
+
 
 

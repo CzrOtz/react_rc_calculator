@@ -11,7 +11,7 @@ function Welcome() {
         
         <li><strong>Info:</strong> Information about the parameters to enter</li>
         <li><strong>Interface:</strong> Get calculations about your build</li>
-        <li><strong>Common Questions:</strong> If you're experiencing powertrain problems</li>
+        <li><strong>Theory:</strong> Theory on electric motors</li>
       </ul>
     </div>
   );

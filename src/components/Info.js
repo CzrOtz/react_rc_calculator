@@ -5,6 +5,7 @@ function Info() {
 return (
     <div className="info-container">
         <h2>Info</h2>
+        <p><strong>Note:</strong> This website is geared towards brushless 1/10th scale RC cars. However, many more features are to come, if you're here, Welcome!</p>
         <p>Here you will find information about how the calculations are performed and what each parameter means.</p>
 
         <ul>
@@ -42,56 +43,8 @@ return (
             </li>
         </ul>
 
-        <div>
-        <h1>Additional Information</h1>
-<p>
-  A thing that RC enthusiasts will attempt to do to achieve more speed out of their build is by increasing the size of their pinion gear and decreasing the size of the spur gear.
-</p>
-
-<p>
-  Imagine the following scenario: Take your motor, put the shaft in a vice, and send full power to it. What will happen?
-  The electricity will flow from the battery to the ESC, and from the ESC to the copper windings in the motor. The electricity will attempt
-  to move the shaft, but it won't be able to because it's fixed in one position. The energy must go somewhere, so it turns into heat, and a lot of it.
-</p>
-
-<p><strong>As the gear ratio approaches 1:1,</strong> one turn of the motor equals one turn of the wheel. <strong>The ability of that motor to move those wheels approaches zero.</strong></p>
-
-<h3>Power Delivery in RC Cars</h3>
-<p>
-  Electric motors <strong>do not</strong> produce power based on motor speed.
-</p>
-<p>
-  Electric motors produce power based on load. The higher the load, the higher the power output.
-  However, there is a point where the motor can no longer turn the current in the winding into rotational force. This leads to the motor overheating.
-  This happens when the motor is under load, but the load is too great, similar to the vice analogy above.
-</p>
-
-<p>
-  If you want to go faster the proper way, you need to either increase the speed of the motor or increase the amount of load that it can handle.
-</p>
-
-<p>
-  Often you'll see very fast RC cars with two setups. 2S drag cars usually have very high kV motors, upwards of 5000 kV. However, due to requirements
-  and the short length of the track, these motors can and do handle being overloaded for short periods of time. With a high enough kV, you'll be achieving
-  3S speeds on 2S, but this is very short-lived.
-</p>
-
-<p>
-  The more kV an electric motor has, the less resistance it has internally. It has less resistance because it has fewer turns, fewer wires. Therefore,
-  the magnetic force being generated is weaker, and it has less torque. These motors tend to overheat drastically when they are under load.
-</p>
-
-<p>
-  Generally, an electric motor with a lower kV will have more torque due to its stronger magnetic field. More wires mean more current flowing through the motor
-  at any given point. Yes, these motors will spin slower, but they will have more torque, and consequently more power. This is why higher cell count batteries
-  are often paired with lower kV motors. The motor can handle the extra load, and the battery can provide the extra power.
-</p>
-
-
-            
-           
-            
-        </div>
+        
+        
     </div>
 );
 }
